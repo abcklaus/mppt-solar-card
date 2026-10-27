@@ -24,7 +24,7 @@ Darunter stehen die Werte in drei farbigen Gruppen, passend zur Grafik:
 ## Installation über HACS
 
 1. HACS öffnen → Menü (⋮) → **Benutzerdefinierte Repositories**.
-2. URL dieses Repositorys eintragen, Typ **Dashboard** (früher „Lovelace“) wählen.
+2. `https://github.com/abcklaus/mppt-solar-card` eintragen, Typ **Dashboard** (früher „Lovelace“) wählen.
 3. „MPPT Solar Card“ suchen und herunterladen.
 4. Browser neu laden (Cache leeren).
 

@@ -526,7 +526,7 @@ if (!window.customCards.some((c) => c.type === "mppt-solar-card")) {
     name: "MPPT Solar Card",
     description: "Leistungsdaten eines MPPT-Solarladereglers (Solar U/I/P, Ladestrom, Temperatur).",
     preview: true,
-    documentationURL: "https://github.com/OWNER/mppt-solar-card",
+    documentationURL: "https://github.com/abcklaus/mppt-solar-card",
   });
 }
 
