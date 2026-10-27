@@ -11,11 +11,15 @@ MPPT-Solarladereglers (z. B. WCS SRJ MPPT 12/24 40A „Jupiter System“) anzeig
 | Strom Richtung Batterie | `battery_current` |
 | Temperatur Laderegler | `temperature` |
 
-Dazu gibt es ein Produktbild des Reglers, eine animierte Energiefluss-Anzeige
-(Solar → Laderegler → Batterie, Geschwindigkeit abhängig von Leistung bzw.
-Ladestrom) und eine farbige Temperaturwarnung.
+Oben zeigt eine schlichte Grafik Solarpanel → Laderegler → Batterie mit
+animierten Kabeln (Geschwindigkeit abhängig von Leistung bzw. Ladestrom).
+Darunter stehen die Werte in drei farbigen Gruppen, passend zur Grafik:
 
-![Vorschau](images/mppt-controller.webp)
+- **Gelb – Solarpanel:** Leistung, Spannung, Strom
+- **Grün – Laderegler:** Temperatur (orange ab Warnschwelle, rot ab kritischer Schwelle)
+- **Blau – Batterie:** Ladestrom mit Status „lädt“ / „entlädt“
+
+![Vorschau](images/preview.png)
 
 ## Installation über HACS
 
@@ -62,13 +66,14 @@ temperature: sensor.mppt_temperatur
 | `temp_critical` | number | `65` | Ab dieser Temperatur rot |
 | `max_power` | number | `500` | Solarleistung, bei der die Fluss-Animation am schnellsten läuft |
 | `max_current` | number | `40` | Ladestrom, bei dem die Fluss-Animation am schnellsten läuft |
-| `show_image` | boolean | `true` | Produktbild anzeigen |
-| `show_flow` | boolean | `true` | Energiefluss anzeigen |
-| `image` | string | eingebautes Bild | Eigene Bild-URL, z. B. `/local/mein-regler.png` |
+| `show_diagram` | boolean | `true` | Grafik Solarpanel → Laderegler → Batterie anzeigen |
 
 Nicht konfigurierte Werte werden ausgeblendet; nicht verfügbare Sensoren
 erscheinen als „—“. Ein Klick auf einen Wert öffnet den Verlauf der Entität.
 Die Nachkommastellen folgen der in Home Assistant eingestellten Anzeigegenauigkeit.
+
+Die Farben lassen sich z. B. mit card-mod über die CSS-Variablen
+`--mppt-solar`, `--mppt-battery` und `--mppt-controller` anpassen.
 
 ## Woher kommen die Sensoren?
 
@@ -80,9 +85,9 @@ ESP32 mit ESPHome als Sensoren in Home Assistant einbinden.
 ## Entwicklung
 
 ```bash
-npm run build   # erzeugt dist/mppt-solar-card.js (Version + eingebettetes Bild)
+npm run build   # erzeugt dist/mppt-solar-card.js
 ```
 
-Quellcode liegt in `src/`, das Bild in `images/`. Für ein Release einen
+Quellcode liegt in `src/`. Für ein Release einen
 GitHub-Release mit Tag `vX.Y.Z` anlegen – der Workflow baut die Datei und
 hängt sie an. HACS bietet dann diese Version zur Installation an.
